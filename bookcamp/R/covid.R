@@ -24,6 +24,7 @@ library(ggalt) # devtools::install_github("hrbrmstr/ggalt")
 library(hrbrthemes) # devtools::install_github("hrbrmstr/hrbrthemes")
 library(tidyverse)
 
+# Color Scheme 
 nord = c("#8FBCBB",
 "#88C0D0",
 "#81A1C1",
