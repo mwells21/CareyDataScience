@@ -1,6 +1,6 @@
 library(readr)
 library(ggplot2)
-
+library(ggthemes)
 
 setwd("~/GitHub/CareyDataScience")
 
@@ -23,24 +23,16 @@ p + coord_flip()
 library(ggalt) # devtools::install_github("hrbrmstr/ggalt")
 library(hrbrthemes) # devtools::install_github("hrbrmstr/hrbrthemes")
 library(tidyverse)
-library(maps)
+
 
 # Color Scheme 
-nord = c("#8FBCBB",
-"#88C0D0",
-"#81A1C1",
-"#5E81AC",
-"#BF616A",
-"#D08770",
-"#EBCB8B",
-"#A3BE8C",
-"#B48EAD",
-"#2E3440",
-"#3B4252",
-"#434C5E",
-"#4C566A")
+palette = c("#8FBCBB","#88C0D0","#81A1C1","#5E81AC","#BF616A",
+         "#D08770","#EBCB8B","#A3BE8C","#B48EAD","#2E3440",
+         "#3B4252","#434C5E","#4C566A")
 
 
+
+library(maps)
 world <- map_data("world")
 world <- world[world$region != "Antarctica", ]
 
@@ -52,7 +44,7 @@ ggplot() +
   geom_cartogram(
     data = usa, map = usa,
     aes(x = long, y = lat, map_id = region),
-    color = nord[[13]], fill = nord[[10]], size = 0.125
+    color = palette[[13]], fill = palette[[10]], size = 0.125
   ) +
   labs(
     x = NULL, y = NULL,
@@ -60,40 +52,41 @@ ggplot() +
     subtitle = "Johns Hopkins University"
   ) +
   geom_point(
-    data = csse_covid_19_daily_reports_us[(csse_covid_19_daily_reports_us$Long_ < 0 & csse_covid_19_daily_reports_us$Long_ > -130 & !is.na(csse_covid_19_daily_reports_us$Long_)),], aes(Long_, Lat, size = Deaths), fill = nord[[6]],
+    data = csse_covid_19_daily_reports_us[(csse_covid_19_daily_reports_us$Long_ < 0 & csse_covid_19_daily_reports_us$Long_ > -130 & !is.na(csse_covid_19_daily_reports_us$Long_)),], aes(Long_, Lat, size = Deaths), fill = palette[[6]],
     shape = 21, alpha = 2/3, stroke = 0.25, color = "#2b2b2b"
   ) +
   scale_size_area(name = "Deaths", max_size = 20, labels = scales::comma) +
   theme(panel.grid = element_blank())+
-  theme(plot.background = element_rect(fill = nord[[13]], color =nord[[13]])) +
-  theme(panel.background = element_rect(fill = nord[[13]], color = nord[[13]]))+
-  theme(legend.background = element_rect(fill = nord[[13]], color = nord[[13]]))+
-  theme(panel.background = element_rect(fill = nord[[13]], color = nord[[13]]))+
-  theme(legend.key = element_rect(fill = nord[[13]], color = nord[[13]]))
+  theme(plot.background = element_rect(fill = palette[[13]], color =palette[[13]])) +
+  theme(panel.background = element_rect(fill = palette[[13]], color = palette[[13]]))+
+  theme(legend.background = element_rect(fill = palette[[13]], color = palette[[13]]))+
+  theme(panel.background = element_rect(fill = palette[[13]], color = palette[[13]]))+
+  theme(legend.key = element_rect(fill = palette[[13]], color = palette[[13]]))
 
 
 
 
-# Time Plot
+# All deaths over time Plot
 library("reshape")
 states = unique(time_series_covid19_deaths_US$Province_State)
-
-  
 
 # Reorganized the table 
 # Probably an easier way to do this 
 
-states_over_time = time_series_covid19_deaths_US[,c("UID","Province_State")]
 states_over_time = cbind(states_over_time, time_series_covid19_deaths_US[,13:ncol(time_series_covid19_deaths_US)])
-View(states_over_time)
+
+# Melt Data 
 tmp = melt(states_over_time,id.vars = "UID")
 
+# Deaths is an object with columns: "UID","varible"(Every Date),"value" (The number of deaths),"state"
 stateUIDs = tmp[tmp$value %in% states,]
 deaths = tmp[!(tmp$value %in% states),]
-
 deaths$state = stateUIDs$value[match(deaths$UID,stateUIDs$UID)]
 deaths$variable=  mdy(as.character(deaths$variable))
 
+
+
+# Loop sum every locations deaths in each state for every day
 dates = unique(deaths$variable)
 this.tmp.state = NULL
 state_dates = NULL
@@ -129,11 +122,48 @@ names(state_colors) = state_dates$state[state_dates$date == "2020-08-19"][rev(or
 ggplot(state_dates, aes(x = date, y = deaths)) + 
   geom_line(aes(color = state), size = 1) +
   scale_color_manual(values = state_colors) +
-  theme_minimal() +
+  theme_gdocs()+
   labs(
     x = NULL, y = NULL,
     title = "Covid Deaths USA",
     subtitle = "Johns Hopkins University"
   ) 
+
+
+
+
+
+# Change in daily deaths per state 
+
+state_dates$daily_change = NA
+for( i in 1:length(dates)){
+  this.date = dates[i]
+  if( i == 1 ){
+    this.change = 0 
+  } else {
+    past.date = dates[i-1]
+    this.change = state_dates$deaths[state_dates$date == this.date] - state_dates$deaths[state_dates$date == past.date]
+  }
+  state_dates$daily_change[state_dates$date == this.date] = this.change
+}
+
+ggplot(state_dates, aes(x = date, y = daily_change)) + 
+  geom_line(aes(color = state), size = 1) +
+  scale_color_manual(values = state_colors) +
+  theme_gdocs()+
+  labs(
+    x = NULL, y = NULL,
+    title = "Covid Deaths USA",
+    subtitle = "Johns Hopkins University"
+  ) 
+
+
+
+
+
+
+
+
+
 
 
