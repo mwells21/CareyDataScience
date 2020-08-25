@@ -56,21 +56,14 @@ ggplot() +
   ) +
   labs(
     x = NULL, y = NULL,
-    title = "Covid Cases USA",
-    subtitle = "(Using bubbles seemed appropriate for some, odd reason)",
-    caption = "Johns Hopkins University"
+    title = "Covid Deaths USA",
+    subtitle = "Johns Hopkins University"
   ) +
   geom_point(
     data = csse_covid_19_daily_reports_us[(csse_covid_19_daily_reports_us$Long_ < 0 & csse_covid_19_daily_reports_us$Long_ > -130 & !is.na(csse_covid_19_daily_reports_us$Long_)),], aes(Long_, Lat, size = Deaths), fill = nord[[6]],
     shape = 21, alpha = 2/3, stroke = 0.25, color = "#2b2b2b"
   ) +
   scale_size_area(name = "Deaths", max_size = 20, labels = scales::comma) +
-  labs(
-    x = NULL, y = NULL,
-    title = "Covid Distribution in USA",
-    subtitle = "By State",
-    caption = "Johns Hopkins University"
-  )+
   theme(panel.grid = element_blank())+
   theme(plot.background = element_rect(fill = nord[[13]], color =nord[[13]])) +
   theme(panel.background = element_rect(fill = nord[[13]], color = nord[[13]]))+
