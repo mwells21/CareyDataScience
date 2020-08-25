@@ -6,9 +6,9 @@ setwd("~/GitHub/CareyDataScience")
 
 
 # LOAD DATA
-csse_covid_19_daily_reports_us <- read_csv("GitHub/CareyDataScience/bookcamp/data/csse_covid_19_daily_reports_us.csv")
+csse_covid_19_daily_reports_us <- read_csv("bookcamp/data/csse_covid_19_daily_reports_us.csv")
 
-time_series_covid19_deaths_US <- read_csv("GitHub/CareyDataScience/bookcamp/data/time_series_covid19_deaths_US.csv")
+time_series_covid19_deaths_US <- read_csv("bookcamp/data/time_series_covid19_deaths_US.csv")
 
 
  
