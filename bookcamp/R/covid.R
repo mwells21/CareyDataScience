@@ -4,16 +4,14 @@ library(ggthemes)
 
 setwd("~/GitHub/CareyDataScience")
 
-
 # LOAD DATA
 csse_covid_19_daily_reports_us <- read_csv("bookcamp/data/csse_covid_19_daily_reports_us.csv")
 
 time_series_covid19_deaths_US <- read_csv("bookcamp/data/time_series_covid19_deaths_US.csv")
 
 
- 
 
-# Visualize 
+# First Look 
 p<-ggplot(data=csse_covid_19_daily_reports_us, aes(x= reorder(Province_State, -Deaths), y=Deaths)) +
   geom_bar(stat="identity")
 # Horizontal bar plot
@@ -24,18 +22,17 @@ library(ggalt) # devtools::install_github("hrbrmstr/ggalt")
 library(hrbrthemes) # devtools::install_github("hrbrmstr/hrbrthemes")
 library(tidyverse)
 
-
 # Color Scheme 
 palette = c("#8FBCBB","#88C0D0","#81A1C1","#5E81AC","#BF616A",
          "#D08770","#EBCB8B","#A3BE8C","#B48EAD","#2E3440",
          "#3B4252","#434C5E","#4C566A")
 
-
-
+# Load World Map Data
 library(maps)
 world <- map_data("world")
 world <- world[world$region != "Antarctica", ]
 
+# trim to just the usa
 usa = world[world$region=="USA"&world$long < 0 & world$long > -130,]
 
 
