@@ -1,6 +1,10 @@
 library(readr)
 library(ggplot2)
 
+
+setwd("~/GitHub/CareyDataScience")
+
+
 # LOAD DATA
 csse_covid_19_daily_reports_us <- read_csv("GitHub/CareyDataScience/bookcamp/data/csse_covid_19_daily_reports_us.csv")
 
