@@ -23,6 +23,7 @@ p + coord_flip()
 library(ggalt) # devtools::install_github("hrbrmstr/ggalt")
 library(hrbrthemes) # devtools::install_github("hrbrmstr/hrbrthemes")
 library(tidyverse)
+library(maps)
 
 # Color Scheme 
 nord = c("#8FBCBB",
