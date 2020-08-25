@@ -129,6 +129,11 @@ names(state_colors) = state_dates$state[state_dates$date == "2020-08-19"][rev(or
 ggplot(state_dates, aes(x = date, y = deaths)) + 
   geom_line(aes(color = state), size = 1) +
   scale_color_manual(values = state_colors) +
-  theme_minimal()
+  theme_minimal() +
+  labs(
+    x = NULL, y = NULL,
+    title = "Covid Deaths USA",
+    subtitle = "Johns Hopkins University"
+  ) 
 
 
