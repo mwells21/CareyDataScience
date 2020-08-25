@@ -75,3 +75,60 @@ ggplot() +
 
 
 # Time Plot
+library("reshape")
+states = unique(time_series_covid19_deaths_US$Province_State)
+
+  
+
+# Reorganized the table 
+# Probably an easier way to do this 
+
+states_over_time = time_series_covid19_deaths_US[,c("UID","Province_State")]
+states_over_time = cbind(states_over_time, time_series_covid19_deaths_US[,13:ncol(time_series_covid19_deaths_US)])
+View(states_over_time)
+tmp = melt(states_over_time,id.vars = "UID")
+
+stateUIDs = tmp[tmp$value %in% states,]
+deaths = tmp[!(tmp$value %in% states),]
+
+deaths$state = stateUIDs$value[match(deaths$UID,stateUIDs$UID)]
+deaths$variable=  mdy(as.character(deaths$variable))
+
+dates = unique(deaths$variable)
+this.tmp.state = NULL
+state_dates = NULL
+for(i in 1:length(states)){
+  this.state = states[i]
+  for(j in 1:length(dates)){
+    this.date = dates[j]
+    this.dates.states = deaths[deaths$variable == this.date &deaths$state == this.state,]
+    this.tmp.date = data.frame(state = this.state, date = this.date, deaths = sum(as.integer(this.dates.states$value)))
+    if(is.null(this.tmp.state)){
+      this.tmp.state = this.tmp.date
+    } else {
+      this.tmp.state = rbind(this.tmp.state,this.tmp.date)
+    }
+  }
+  
+  if(is.null(state_dates)){
+    state_dates = this.tmp.state
+  } else {
+    state_dates = rbind(state_dates,this.tmp.state)
+  }
+  
+  this.tmp.state = NULL
+}
+
+
+# Create colors for the highest states 
+state_colors = c("red4","firebrick1","darkorange4","chocolate1","orange","darkgoldenrod","gold","yellow","lightgoldenrod",rep("gray",49))
+names(state_colors) = state_dates$state[state_dates$date == "2020-08-19"][rev(order(state_dates$deaths[state_dates$date == "2020-08-19"]))]
+
+ 
+# Line plot of deaths in US state over time 
+ggplot(state_dates, aes(x = date, y = deaths)) + 
+  geom_line(aes(color = state), size = 1) +
+  scale_color_manual(values = state_colors) +
+  theme_minimal()
+
+
