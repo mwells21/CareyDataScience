@@ -69,12 +69,13 @@ states = unique(time_series_covid19_deaths_US$Province_State)
 
 # Reorganized the table 
 # Probably an easier way to do this 
-
+states_over_time = time_series_covid19_deaths_US[,c("UID","Province_State")]
 states_over_time = cbind(states_over_time, time_series_covid19_deaths_US[,13:ncol(time_series_covid19_deaths_US)])
 
 # Melt Data 
 tmp = melt(states_over_time,id.vars = "UID")
 
+library(lubridate)
 # Deaths is an object with columns: "UID","varible"(Every Date),"value" (The number of deaths),"state"
 stateUIDs = tmp[tmp$value %in% states,]
 deaths = tmp[!(tmp$value %in% states),]
