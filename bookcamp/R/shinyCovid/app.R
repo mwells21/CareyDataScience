@@ -10,31 +10,34 @@
 library(shiny)
 library(readr)
 library(shinydashboard)
+library(tidyverse)
 
 # Define UI for application that draws a histogram
 ui <- dashboardPage(
     dashboardHeader(title = "Covid-19"),
     dashboardSidebar(
-        menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-        menuItem("Widgets", tabName = "widgets", icon = icon("th"))
+        sidebarMenu(
+            menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+            menuItem("Twitter", tabName = "twitter", icon = icon("th"))   
+        )
     ),
     dashboardBody(
         tabItems(
             # First tab content
             tabItem(tabName = "dashboard",
                     fluidRow(
-                        box(plotOutput("plot1", height = 250)),
-                        
-                        box(
-                            title = "Controls",
-                            sliderInput("slider", "Number of observations:", 1, 100, 50)
-                        )
+                        column(width = 8,
+                               box(
+                                   title = "Controls",
+                                   plotOutput()
+                                   )
+                               )
                     )
             ),
             
             # Second tab content
-            tabItem(tabName = "widgets",
-                    h2("Widgets tab content")
+            tabItem(tabName = "twitter",
+                    h2("Tweets")
             )
         )
     )
