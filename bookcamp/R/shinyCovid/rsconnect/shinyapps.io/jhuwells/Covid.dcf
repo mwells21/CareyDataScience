@@ -1,0 +1,10 @@
+name: Covid
+title:
+username:
+account: jhuwells
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2720015
+bundleId: 3567660
+url: https://jhuwells.shinyapps.io/Covid/
+when: 1598630174.91864
