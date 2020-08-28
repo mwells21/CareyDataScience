@@ -14,7 +14,7 @@ library(tidyverse)
 library(ggthemes)
 library(plotly)
 library(maps)
-library(ggalt)
+library(ggalt)# devtools::install_github("hrbrmstr/ggalt")
 
 # Define UI for application that draws a histogram
 ui <- dashboardPage(skin = "red",
