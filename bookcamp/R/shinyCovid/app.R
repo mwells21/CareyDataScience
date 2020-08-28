@@ -17,65 +17,75 @@ library(maps)
 library(ggalt)
 
 # Define UI for application that draws a histogram
-ui <- dashboardPage(
-    dashboardHeader(title = "Covid-19"),
-    dashboardSidebar(
-        sidebarMenu(
-            menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-            menuItem("Twitter", tabName = "twitter", icon = icon("th"))   
-        )
-    ),
-    dashboardBody(
-        tabItems(
-            # First tab content
-            tabItem(tabName = "dashboard",
-                    fluidRow(
-                        column(
-                            width = 6,
-                            offset = 2,
-                            box(
-                                title = "Total Deaths",
-                                width = 12,
-                                plotOutput(outputId = "home_map")
-                                )
-                            ),
-                        column(
-                            width = 2,
-                            fluidRow(
-                                valueBoxOutput(outputId = "home_valuebox_1",width = 12)
-                                ),
-                            fluidRow(
-                                valueBoxOutput(outputId = "home_valuebox_2",width = 12)
-                                ),
-                            fluidRow(
-                                valueBoxOutput(outputId = "home_valuebox_3",width = 12)
-                            ),
-                            fluidRow(
-                                valueBoxOutput(outputId = "home_valuebox_4",width = 12)
+ui <- dashboardPage(skin = "red",
+                    dashboardHeader(title = "Covid-19"),
+                    dashboardSidebar(
+                        sidebarMenu(
+                            menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+                            menuItem("Twitter", tabName = "twitter", icon = icon("th"))
                             )
-                    )
-                    ),
+                        ),
                     
-                    fluidRow(
-                        column(
-                            width = 8,
-                            offset = 2,
-                            box(
-                                title = "Daily Deaths",width = 12,
-                                plotlyOutput(outputId = "plot1")
-                            )
+                    dashboardBody(
+                        tabItems(
+                            # First tab content
+                            tabItem(tabName = "dashboard",
+                                    fluidRow(
+                                        column(
+                                            width = 6,
+                                            offset = 2,
+                                            box(
+                                                title = "Total Deaths",
+                                                width = 12,
+                                                plotOutput(outputId = "home_map")
+                                                )
+                                            ),
+                                        column(
+                                            width = 2,
+                                            fluidRow(
+                                                valueBoxOutput(outputId = "home_valuebox_1",width = 12)
+                                                ),
+                                            fluidRow(
+                                                valueBoxOutput(outputId = "home_valuebox_2",width = 12)
+                                                ),
+                                            fluidRow(
+                                                valueBoxOutput(outputId = "home_valuebox_3",width = 12)
+                                            ),
+                                            fluidRow(
+                                                valueBoxOutput(outputId = "home_valuebox_4",width = 12)
+                                            )
+                                    )
+                                    ),
+                                    
+                                    fluidRow(
+                                        column(
+                                            width = 8,
+                                            offset = 2,
+                                            box(
+                                                title = "Daily Deaths",width = 12,
+                                                plotlyOutput(outputId = "plot1")
+                                            )
+                                            
+                                        )
+                                    )
+                            ),
                             
+                            # Second tab content
+                            tabItem(tabName = "twitter",
+                                    h2("Tweets")
+                            )
                         )
                     )
-            ),
-            
-            # Second tab content
-            tabItem(tabName = "twitter",
-                    h2("Tweets")
-            )
-        )
-    )
 )
+
+
+
+
+
+
+
+
+
 # Define server logic required to draw a histogram
 server <- function(input, output) {
     set.seed(122)
