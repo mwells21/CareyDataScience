@@ -76,17 +76,19 @@ hist(conret$japan,col = "skyblue2",breaks = 20,xlim = c(-.2,.3))
 # 2.4 - Summary table of data 
 countries = colnames(conret)[2:16]
 
+# place holder set equal to null
 sumTable = NULL
-
 for(i in 1:length(countries)){
   this.country = countries[i]
   this.data    = as.data.frame(conret[,this.country])
   
+  # Calculate needed info
   this.mean    = signif(mean(this.data[,1]),digits = 3)
   this.median  = signif(median(this.data[,1]),digits = 3)
   this.sd      = signif(sd(this.data[,1]),digits = 3)
   this.var     = signif(var(this.data[,1]),digits = 3)
   
+  # build data frame 
   this.tmp     = data.frame(country = this.country, mean = this.mean, median = this.median, sd = this.sd, variance = this.var)
   if(is.null(sumTable)){
     sumTable = this.tmp
@@ -98,8 +100,7 @@ for(i in 1:length(countries)){
   
 }
 
-
-
+write_csv(sumTable, path = "data/countrySummary.csv")
 
 
 
