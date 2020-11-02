@@ -42,8 +42,3 @@ for(i in 1:n){
 df.mean = apply(X = df.dist,2,FUN = mean)
 
 hist(df.mean)
-
-### hello demi ####
-
-
-# Making changes
