@@ -11,6 +11,7 @@ library(tidyverse)
 library(pastecs)
 library(ggmap)
 
+setwd("~/GitHub/CareyDataScience/econometrics/ps1")
 # ---- Problem 1 ---- 
 
 # Part A 

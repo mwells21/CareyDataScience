@@ -38,7 +38,7 @@ setwd("~/GitHub/CareyDataScience/econometrics")
 # data. Here, I have read module1.csv and I name it "dat".  Notice that     #
 # after this command, "dat" will appear in the upper right window.          #
 #############################################################################
-dat = read_csv("module1.csv")
+dat = read_csv("auto.csv")
 #############################################################################
 # Here are some basic commands to better understand your data.              #
 #############################################################################
