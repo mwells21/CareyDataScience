@@ -27,7 +27,7 @@ hsb2$meancat[hsb2$meanscore > 45 & hsb2$meanscore < 60] = "Middle"
 hsb2$meancat[hsb2$meanscore >= 60] = "High"
 
 # Part C 
-newdata = hsb2[order(hsb2$meancat),]
+newdata = hsb2[order(hsb2$meanscore),]
 
 # Part D 
 newdata2 = newdata[c("read","write","math","science","socst","meanscore","meancat")]
@@ -45,10 +45,10 @@ max(airbnb$price)
 min(airbnb$price)
 
 # Part B
-hist(airbnb$price,breaks = 100, col ="powder blue")
+hist(airbnb$price,breaks = 100,main = "AirBnB Price", xlab = "Price", col ="powder blue")
 
 # Part C
-hist(airbnb$price[airbnb$price < 1000],breaks = 20, col ="powder blue")
+hist(airbnb$price[airbnb$price < 1000],breaks = 20,main = "AirBnB Price", xlab = "Price", col ="powder blue")
 
 # Part D 
 plot(airbnb$longitude,airbnb$latitude)
@@ -57,10 +57,14 @@ ggplot(data = airbnb, aes(x = longitude, y = latitude,col = airbnb$neighbourhood
   geom_point()
 
 # Part E 
+airbnb_clean = airbnb[airbnb$latitude >= 29.91,]
+
+
+plot(x = airbnb_clean$longitude,y = airbnb_clean$latitude)
 
 
 # Bonus 
-qmplot(longitude, latitude, data = airbnb, maptype = "toner-light", color = room_type)
+qmplot(longitude, latitude, data = airbnb_clean, maptype = "toner-lite", color = room_type)
 
 
 
