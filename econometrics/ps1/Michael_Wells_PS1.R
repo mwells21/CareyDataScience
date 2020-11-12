@@ -1,14 +1,12 @@
 ##############################################
 # Author: Michael Wells                      #
 # At: Johns Hopkins Carey Business School    # 
-# For: Econometrics PS1                      #
+# For: Econometric PS1                       #
 #                                            #
 ##############################################
 
 
-
 library(tidyverse)
-library(pastecs)
 library(ggmap)
 
 setwd("~/GitHub/CareyDataScience/econometrics/ps1")
@@ -38,35 +36,41 @@ rm(list = ls())
 #---- Problem 2 ----
 airbnb <- read_csv("airbnb.csv")
 
-# Part A 
-mean(airbnb$price)
-median(airbnb$price)
-max(airbnb$price)
-min(airbnb$price)
+# Part A - General Stats
+mean(airbnb$price)     # 198.0681
+median(airbnb$price)   # 135
+max(airbnb$price)      # 10000
+min(airbnb$price)      # 10
 
-# Part B
+# Part B - Histogram
 hist(airbnb$price,breaks = 100,main = "AirBnB Price", xlab = "Price", col ="powder blue")
 
-# Part C
+# Part C - Filtered Histogram
 hist(airbnb$price[airbnb$price < 1000],breaks = 20,main = "AirBnB Price", xlab = "Price", col ="powder blue")
 
-# Part D 
+# Part D - Long vs Lat Scatter Plot
 plot(airbnb$longitude,airbnb$latitude)
 
-ggplot(data = airbnb, aes(x = longitude, y = latitude,col = airbnb$neighbourhood))+
+# Colored by roomtype 
+ggplot(data = airbnb, aes(x = longitude, y = latitude,col = airbnb$room_type))+
   geom_point()
 
-# Part E 
+# Part E - Removed location that is in the river 
 airbnb_clean = airbnb[airbnb$latitude >= 29.91,]
-
-
 plot(x = airbnb_clean$longitude,y = airbnb_clean$latitude)
 
 
-# Bonus 
-qmplot(longitude, latitude, data = airbnb_clean, maptype = "toner-lite", color = room_type)
+# Bonus - color by room type, size by price
+qmplot(longitude, latitude, data = airbnb_clean, maptype = "toner-lite", color = room_type, size = price)
+
+# Facet
+qmplot(longitude, latitude, data = airbnb_clean, maptype = "toner-lite", color = room_type, size = price)+
+  facet_wrap(~room_type)
 
 
 
-
+# EXTRA - Because I was curious 
+p <- ggplot(airbnb[airbnb$price <= 1000,], aes(x=room_type, y=price, fill = room_type)) + 
+  geom_boxplot()
+p
 
