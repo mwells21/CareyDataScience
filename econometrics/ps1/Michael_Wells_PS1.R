@@ -11,9 +11,9 @@ library(ggmap)
 
 setwd("~/GitHub/CareyDataScience/econometrics/ps1")
 # ---- Problem 1 ---- 
+hsb2 <- read_csv("hsb2.csv")
 
 # Part A 
-hsb2 <- read_csv("hsb2.csv")
 scores = hsb2[,c("read","write","math","science","socst")]
 meanscore = rowMeans(scores)
 hsb2$meanscore = meanscore
@@ -49,7 +49,7 @@ hist(airbnb$price,breaks = 100,main = "AirBnB Price", xlab = "Price", col ="powd
 hist(airbnb$price[airbnb$price < 1000],breaks = 20,main = "AirBnB Price", xlab = "Price", col ="powder blue")
 
 # Part D - Long vs Lat Scatter Plot
-plot(airbnb$longitude,airbnb$latitude)
+plot(airbnb$longitude,airbnb$latitude, main = "AirBnB Location",xlab = "Longitude", ylab = "Latitude")
 
 # Colored by roomtype 
 ggplot(data = airbnb, aes(x = longitude, y = latitude,col = airbnb$room_type))+
@@ -57,7 +57,7 @@ ggplot(data = airbnb, aes(x = longitude, y = latitude,col = airbnb$room_type))+
 
 # Part E - Removed location that is in the river 
 airbnb_clean = airbnb[airbnb$latitude >= 29.91,]
-plot(x = airbnb_clean$longitude,y = airbnb_clean$latitude)
+plot(x = airbnb_clean$longitude,y = airbnb_clean$latitude,main = "AirBnB Location",xlab = "Longitude", ylab = "Latitude")
 
 
 # Bonus - color by room type, size by price
