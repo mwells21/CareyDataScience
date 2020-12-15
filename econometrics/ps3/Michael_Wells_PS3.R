@@ -53,8 +53,20 @@ summary(lm3)
 #---- Problem 2 ----
 brfss <- read_csv("brfss.csv")
 
-ggplot(data = brfss, aes(x = year, y = sm, col = year))+
-  geom_bar(stat = "identity")
+prev = c(mean(brfss$sm[brfss$year == 2000]), mean(brfss$sm[brfss$year == 2001]), mean(brfss$sm[brfss$year == 2002]), mean(brfss$sm[brfss$year == 2003]), mean(brfss$sm[brfss$year == 2004]), mean(brfss$sm[brfss$year == 2005]))
+plot_df = data.frame(year = unique(brfss$year), prev = prev)
+
+ggplot(data = plot_df, aes(x = year, y = prev))+
+  geom_point(color = "")+
+  geom_smooth(method = "lm",formula = y ~ x)
+
+
+ggplot(brfss, 
+       aes(x = year, 
+           fill = as.factor(sm))) + 
+  geom_bar(position = "fill") +
+  labs(y = "Proportion")
+
 
 
 # Part C ----- 
@@ -65,6 +77,12 @@ brfss$post[brfss$year == 2002] = 2
 brfss$post[brfss$year == 2003] = 3 
 brfss$post[brfss$year == 2004] = 4 
 brfss$post[brfss$year == 2005] = 5 
+
+prev = c(mean(brfss$sm[brfss$year == 2000]), mean(brfss$sm[brfss$year == 2001]), mean(brfss$sm[brfss$year == 2002]), mean(brfss$sm[brfss$year == 2003]), mean(brfss$sm[brfss$year == 2004]), mean(brfss$sm[brfss$year == 2005]))
+
+plot_df = data.frame(year = unique(brfss$year), prev = prev)
+
+
 
 brfss$treat = ifelse(brfss$fips==34,1,0)
 brfss$posttreat = brfss$post * brfss$treat
