@@ -4,6 +4,7 @@
 # For: Econometric PS3                       #
 # Date: 12/18/20                             #
 ##############################################
+library(tidyverse)
 
 setwd("~/GitHub/CareyDataScience/econometrics/ps3/")
 
@@ -45,6 +46,33 @@ brfss2010$edu_4[brfss2010$edu_4 == 4] = 1
 
 lm3 = lm(sm ~ age + age_squared + binge + black + fem + marry + ban + cigtax + inc + edu_1 + edu_2  + edu_3 + edu_4, data = brfss2010)
 summary(lm3)
+
+
+
+
+#---- Problem 2 ----
+brfss <- read_csv("brfss.csv")
+
+ggplot(data = brfss, aes(x = year, y = sm, col = year))+
+  geom_bar(stat = "identity")
+
+
+# Part C ----- 
+brfss$post = NA
+brfss$post[brfss$year == 2000] = 0 
+brfss$post[brfss$year == 2001] = 1 
+brfss$post[brfss$year == 2002] = 2 
+brfss$post[brfss$year == 2003] = 3 
+brfss$post[brfss$year == 2004] = 4 
+brfss$post[brfss$year == 2005] = 5 
+
+brfss$treat = ifelse(brfss$fips==34,1,0)
+brfss$posttreat = brfss$post * brfss$treat
+
+lm4 = lm(sm ~ post+treat+posttreat,data = brfss)
+summary(lm4)
+
+
 
 
 
