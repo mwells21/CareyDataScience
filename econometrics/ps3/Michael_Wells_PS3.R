@@ -61,19 +61,7 @@ ggplot(brfss,
 
 
 # Part C ----- 
-brfss$post = NA
-brfss$post[brfss$year == 2000] = 0 
-brfss$post[brfss$year == 2001] = 1 
-brfss$post[brfss$year == 2002] = 2 
-brfss$post[brfss$year == 2003] = 3 
-brfss$post[brfss$year == 2004] = 4 
-brfss$post[brfss$year == 2005] = 5 
-
-prev = c(mean(brfss$sm[brfss$year == 2000]), mean(brfss$sm[brfss$year == 2001]), mean(brfss$sm[brfss$year == 2002]), mean(brfss$sm[brfss$year == 2003]), mean(brfss$sm[brfss$year == 2004]), mean(brfss$sm[brfss$year == 2005]))
-
-plot_df = data.frame(year = unique(brfss$year), prev = prev)
-
-
+brfss$post = as.numeric(substr(x = as.character(brfss$year),start = 4, stop = 4))
 
 brfss$treat = ifelse(brfss$fips==34,1,0)
 brfss$posttreat = brfss$post * brfss$treat
