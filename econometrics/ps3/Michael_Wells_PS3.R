@@ -5,6 +5,7 @@
 # Date: 12/18/20                             #
 ##############################################
 library(tidyverse)
+library(rdrobust)
 
 setwd("~/GitHub/CareyDataScience/econometrics/ps3/")
 
@@ -26,6 +27,8 @@ lm1$coefficients["inc"] * 100
 brfss2010$age_squared = brfss2010$age^2 
 lm2 = lm(sm ~ age + age_squared + binge + black + fem + marry + ban + cigtax + inc + edu, data = brfss2010)
 summary(lm2)
+
+rdplot(brfss2010$sm,dat$age, c=5, p=5) 
 
 
 # Part E ----
