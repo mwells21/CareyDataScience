@@ -37,7 +37,6 @@ lm_int_year = lm(mrate ~ legal + dtype_int + factor(year),data = dat)
 summary(lm_int_year)
 
 
-
 # With State Specific linear trends 
 lm_all_state = lm(mrate ~ legal + dtype_all + factor(year) + factor(state),data = dat)
 summary(lm_all_state)
