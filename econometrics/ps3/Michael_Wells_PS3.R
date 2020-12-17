@@ -2,7 +2,7 @@
 # Author: Michael Wells                      #
 # At: Johns Hopkins Carey Business School    # 
 # For: Econometric PS3                       #
-# Date: 12/18/20                             #
+# Date: 12/17/20                             #
 ##############################################
 library(tidyverse)
 library(rdrobust)
@@ -21,14 +21,17 @@ summary(lm1)
 lm1$coefficients["inc"] * 100 
 
 # Part C ----- 
-
+#
+# Written Section
+#
 
 # Part D ----- 
 brfss2010$age_squared = brfss2010$age^2 
 lm2 = lm(sm ~ age + age_squared + binge + black + fem + marry + ban + cigtax + inc + edu, data = brfss2010)
 summary(lm2)
 
-
+lm2$coefficients["age"] 
+lm2$coefficients["age_squared"] 
 
 # Part E ----
 brfss2010$edu_1 = ifelse(brfss2010$edu == 1, 1, 0)
