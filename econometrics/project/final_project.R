@@ -65,6 +65,10 @@ p2 = ggplot(data = state_orders, aes(x = State, ymin = 0, ymax = Duration ))+
 
 plot_grid(p1, p2, labels = "AUTO")
 
+p1
+
+p2
+
 
 
 
