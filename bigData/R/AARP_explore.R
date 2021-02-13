@@ -1,17 +1,15 @@
-setwd("~/../../OneDrive/myDrive/MBA/Year1/Spring1/Big Data/")
-
 library(tidyverse)
 
+setwd("GitHub/CareyDataScience/bigData/")
 
 dat = read_csv("data/AARP Data.csv")
 
-
-
+users_table = read_csv("data/AARP_users_table.csv")
 
 # ---- Demographics ----
 
 # Gender 
-ggplot(dat,aes(x = gender_agg_ind, fill = gender_agg_ind) ) +
+ggplot(users_table,aes(x = gender, fill = gender) ) +
   geom_bar()+
   scale_fill_manual(values = c("lightpink","lightblue","grey"))
 
@@ -72,3 +70,64 @@ ggpca$type[ggpca$id %in% both_users] = "Both"
 
 ggplot(ggpca, aes(pc1,pc3, col = type)) +
   geom_point()
+
+
+
+
+########################################################################
+library(tidyverse)
+library(ggthemes)
+
+
+# Set dir and load data 
+setwd("GitHub/CareyDataScience/bigData/")
+dat = read_csv("data/AARP Data.csv")
+users = read_csv("data/AARP_users_table.csv")
+
+# Bar plot counts for each group
+ggplot(users, aes(x = event,fill = event)) +
+  geom_bar()+ theme_minimal()+ scale_fill_brewer(palette = "Blues")
+
+# Boxplots comparing types 
+
+# Age 
+ggplot(users, aes(x = event, y = age, fill = event)) +
+  geom_boxplot()+ theme_minimal()+scale_fill_brewer(palette = "Blues")
+
+t.test(users$age[users$event == "In_Person"],users$age[users$event == "Virtual"])
+
+# Politics Model 
+ggplot(users, aes(x = event, y = model_pol, fill = event)) +
+  geom_boxplot()+ theme_minimal()+scale_fill_brewer(palette = "Blues")
+  
+t.test(users$age[users$event == "In_Person"],users$ge[users$event == "Virtual"])
+
+# days since joining 
+ggplot(users, aes(x = event, y = days_member, fill = event)) +
+  geom_boxplot()+ theme_minimal()+scale_fill_brewer(palette = "Blues")
+
+# Number of events 
+ggplot(users, aes(x = event, y = num_of_events, fill = event)) +
+  geom_boxplot()+ theme_minimal()+scale_fill_brewer(palette = "Blues")
+
+
+ggplot(users, aes(x = event, y =num_of_events, fill = event)) +
+  geom_bar(stat = "summary",fun.y = "mean")+ theme_minimal()+scale_fill_brewer(palette = "Blues")+
+  ylab("Average Number of Events")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
