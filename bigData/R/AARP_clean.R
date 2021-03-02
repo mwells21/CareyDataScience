@@ -26,7 +26,8 @@ per_users = per_users[!(per_users %in% both_users)]
 # ---- Create New User based Tidy data frame ----
 
 users_table = data.frame(id = users, event = NA,num_of_events = NA, age = NA, gender = NA,
-                         date_joined = NA, days_member = NA,years_member = NA, model_pol = NA)
+                         date_joined = NA, days_member = NA,years_member = NA, model_pol = NA,
+                         )
 
 # Event 
 users_table$event[users_table$id %in% vir_users] = "Virtual"
@@ -62,13 +63,26 @@ users_table$years_member =  users_table$days_member / 365
 users_table$model_pol = dat$AA_model_Ideology[users_index]
 
 
+# Location - State 
+users_table$state 
+
 
 write_csv(users_table, path = "data/AARP_users_table.csv")
 
 
+#---- Additions 
+
+users_index = match(users_table$id,dat$Identification_Key)
+# Location - State 
+users_table$state = NA 
+users_table$state = dat$STATE[users_index]
 
 
+#  ---- Add engagement -----
+users_index = match(users$id,dat$Identification_Key)
 
+
+interactions = dat[users_index,58:72]
 
 
 

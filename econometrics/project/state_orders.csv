@@ -1,46 +1,46 @@
-State,Effective Date,Month,Day,Start,End,Duration
-Alabama,"April 4, 2020Â atÂ 5:00Â p.m.",April,4,4/4/2020,4/30/2020,26
-Alaska,"March 28, 2020 atÂ 5:00Â p.m.",March,28,3/28/2020,4/27/2020,30
-Arizona,"March 31, 2020 atÂ 5:00Â p.m.",March,31,3/31/2020,5/15/2020,45
-California,19-Mar-20,March,19,3/19/2020,12/3/2020,259
-Colorado,"March 26, 2020 atÂ 6:00Â a.m.",March,26,3/26/2020,4/25/2020,30
-Connecticut,"March 23, 2020 atÂ 8:00Â p.m.",March,23,3/23/2020,5/20/2020,58
-Delaware,"March 24, 2020 atÂ 8:00Â a.m.",March,24,3/24/2020,5/31/2020,68
-District of Columbia,"April 1, 2020 atÂ 12:01Â a.m.",April,1,4/1/2020,6/8/2020,68
-Florida,"April 3, 2020 atÂ 12:01Â a.m.Â ",April,3,4/3/2020,5/4/2020,31
-Georgia,"April 3, 2020Â at 6:00Â p.m.",April,3,4/3/2020,4/30/2020,27
-Hawaii,"March 25, 2020Â atÂ 12:01Â a.m.",March,25,3/25/2020,5/31/2020,67
-Idaho,25-Mar-20,March,25,3/25/2020,4/30/2020,36
-Illinois,"March 21, 2020 atÂ 5:00Â p.m.",March,21,3/21/2020,5/29/2020,69
-Indiana,"March 24, 2020 atÂ 11:59Â p.m.",March,24,3/24/2020,5/1/2020,38
-Kansas,"March 30, 2020 atÂ 12:01Â a.m.Â ",March,30,3/30/2020,5/3/2020,34
-Kentucky,"March 26, 2020 atÂ 8:00Â p.m.",March,26,3/26/2020,6/29/2020,95
-Louisiana,"March 23, 2020 atÂ 5:00Â p.m.",March,23,3/23/2020,5/15/2020,53
-Maine,"April 2, 2020 atÂ 12:01Â a.m.",April,2,4/2/2020,5/31/2020,59
-Maryland,"March 30, 2020 atÂ 8:00Â p.m.",March,30,3/30/2020,5/15/2020,46
-Massachusetts,"March 24, 2020 atÂ 12:00Â noon; updated order effective April 1, 2020 at noon",March,24,3/24/2020,5/18/2020,55
-Michigan,"March 24, 2020 atÂ 12:01Â a.m.",March,24,3/24/2020,6/1/2020,69
-Minnesota,"March 27, 2020 atÂ 11:59Â p.m.",March,27,3/27/2020,5/17/2020,51
-Mississippi,"April 3, 2020Â atÂ 5:00Â p.m.",April,3,4/3/2020,4/27/2020,24
-Missouri,"April 6, 2020 atÂ 12:01Â a.m.",April,6,4/6/2020,5/3/2020,27
-Montana,"March 28, 2020 atÂ 12:01Â a.m.",March,28,3/28/2020,4/26/2020,29
-Nevada,"April 1, 2020 atÂ midnight",April,1,4/1/2020,5/15/2020,44
-New Hampshire,"March 27, 2020 atÂ 11:59Â p.m.",March,27,3/27/2020,6/15/2020,80
-New Jersey,"March 21, 2020 atÂ 9:00Â p.m.",March,21,3/21/2020,6/9/2020,80
-New Mexico,23-Mar-20,March,23,3/23/2020,11/30/2020,252
-New York,22-Mar-20,March,22,3/22/2020,6/27/2020,97
-North Carolina,"March 30, 2020 atÂ 5:00Â p.m.",March,30,3/30/2020,5/22/2020,53
-Ohio,"March 23, 2020 atÂ 11:59Â p.m.",March,23,3/23/2020,5/19/2020,57
-Oklahoma,24-Mar-20,March,24,3/24/2020,5/6/2020,43
-Oregon,23-Mar-20,March,23,3/23/2020,6/19/2020,88
-Pennsylvania,"April 1, 2020Â atÂ 8:00 p.m.",April,1,4/1/2020,6/4/2020,64
-Puerto Rico,15-Mar-20,March,15,3/15/2020,5/25/2020,71
-Rhode Island,28-Mar-20,March,28,3/28/2020,5/8/2020,41
-South Carolina,"April 7, 2020 atÂ 5:00Â p.m.",April,7,4/7/2020,5/4/2020,27
-Tennessee,"March 31, 2020 atÂ 11:59Â p.m.",March,31,3/31/2020,4/30/2020,30
-Texas,"April 2, 2020 atÂ 12:01Â a.m.",April,2,4/2/2020,4/30/2020,28
-Vermont,"March 25, 2020 atÂ 5:00Â p.m.",March,25,3/25/2020,5/15/2020,51
-Virginia,30-Mar-20,March,30,3/30/2020,5/29/2020,60
-Washington,23-Mar-20,March,23,3/23/2020,5/31/2020,69
-West Virginia,"March 24, 2020 atÂ 8:00Â p.m.",March,24,3/24/2020,5/4/2020,41
-Wisconsin,"March 25, 2020 atÂ 8:00Â a.m.",March,25,3/25/2020,5/13/2020,49
+State,Effective Date,Month,Day,Start,End,Duration,Abv
+Alabama,"April 4, 2020?ÿat?ÿ5:00?ÿp.m.",April,4,4/4/2020,4/30/2020,26,AL
+Alaska,"March 28, 2020 at?ÿ5:00?ÿp.m.",March,28,3/28/2020,4/27/2020,30,AK
+Arizona,"March 31, 2020 at?ÿ5:00?ÿp.m.",March,31,3/31/2020,5/15/2020,45,AZ
+California,19-Mar-20,March,19,3/19/2020,12/3/2020,259,CA
+Colorado,"March 26, 2020 at?ÿ6:00?ÿa.m.",March,26,3/26/2020,4/25/2020,30,CO
+Connecticut,"March 23, 2020 at?ÿ8:00?ÿp.m.",March,23,3/23/2020,5/20/2020,58,CT
+Delaware,"March 24, 2020 at?ÿ8:00?ÿa.m.",March,24,3/24/2020,5/31/2020,68,DE
+District of Columbia,"April 1, 2020 at?ÿ12:01?ÿa.m.",April,1,4/1/2020,6/8/2020,68,DC
+Florida,"April 3, 2020 at?ÿ12:01?ÿa.m.?ÿ",April,3,4/3/2020,5/4/2020,31,FL
+Georgia,"April 3, 2020?ÿat 6:00?ÿp.m.",April,3,4/3/2020,4/30/2020,27,GA
+Hawaii,"March 25, 2020?ÿat?ÿ12:01?ÿa.m.",March,25,3/25/2020,5/31/2020,67,HI
+Idaho,25-Mar-20,March,25,3/25/2020,4/30/2020,36,ID
+Illinois,"March 21, 2020 at?ÿ5:00?ÿp.m.",March,21,3/21/2020,5/29/2020,69,IL
+Indiana,"March 24, 2020 at?ÿ11:59?ÿp.m.",March,24,3/24/2020,5/1/2020,38,IN
+Kansas,"March 30, 2020 at?ÿ12:01?ÿa.m.?ÿ",March,30,3/30/2020,5/3/2020,34,KS
+Kentucky,"March 26, 2020 at?ÿ8:00?ÿp.m.",March,26,3/26/2020,6/29/2020,95,KY
+Louisiana,"March 23, 2020 at?ÿ5:00?ÿp.m.",March,23,3/23/2020,5/15/2020,53,LA
+Maine,"April 2, 2020 at?ÿ12:01?ÿa.m.",April,2,4/2/2020,5/31/2020,59,ME
+Maryland,"March 30, 2020 at?ÿ8:00?ÿp.m.",March,30,3/30/2020,5/15/2020,46,MD
+Massachusetts,"March 24, 2020 at?ÿ12:00?ÿnoon; updated order effective April 1, 2020 at noon",March,24,3/24/2020,5/18/2020,55,MA
+Michigan,"March 24, 2020 at?ÿ12:01?ÿa.m.",March,24,3/24/2020,6/1/2020,69,MI
+Minnesota,"March 27, 2020 at?ÿ11:59?ÿp.m.",March,27,3/27/2020,5/17/2020,51,MN
+Mississippi,"April 3, 2020?ÿat?ÿ5:00?ÿp.m.",April,3,4/3/2020,4/27/2020,24,MS
+Missouri,"April 6, 2020 at?ÿ12:01?ÿa.m.",April,6,4/6/2020,5/3/2020,27,MO
+Montana,"March 28, 2020 at?ÿ12:01?ÿa.m.",March,28,3/28/2020,4/26/2020,29,MT
+Nevada,"April 1, 2020 at?ÿmidnight",April,1,4/1/2020,5/15/2020,44,NV
+New Hampshire,"March 27, 2020 at?ÿ11:59?ÿp.m.",March,27,3/27/2020,6/15/2020,80,NH
+New Jersey,"March 21, 2020 at?ÿ9:00?ÿp.m.",March,21,3/21/2020,6/9/2020,80,NJ
+New Mexico,23-Mar-20,March,23,3/23/2020,11/30/2020,252,NM
+New York,22-Mar-20,March,22,3/22/2020,6/27/2020,97,NY
+North Carolina,"March 30, 2020 at?ÿ5:00?ÿp.m.",March,30,3/30/2020,5/22/2020,53,NC
+Ohio,"March 23, 2020 at?ÿ11:59?ÿp.m.",March,23,3/23/2020,5/19/2020,57,OH
+Oklahoma,24-Mar-20,March,24,3/24/2020,5/6/2020,43,OK
+Oregon,23-Mar-20,March,23,3/23/2020,6/19/2020,88,OR
+Pennsylvania,"April 1, 2020?ÿat?ÿ8:00 p.m.",April,1,4/1/2020,6/4/2020,64,PA
+Puerto Rico,15-Mar-20,March,15,3/15/2020,5/25/2020,71,PU
+Rhode Island,28-Mar-20,March,28,3/28/2020,5/8/2020,41,RI
+South Carolina,"April 7, 2020 at?ÿ5:00?ÿp.m.",April,7,4/7/2020,5/4/2020,27,SC
+Tennessee,"March 31, 2020 at?ÿ11:59?ÿp.m.",March,31,3/31/2020,4/30/2020,30,TN
+Texas,"April 2, 2020 at?ÿ12:01?ÿa.m.",April,2,4/2/2020,4/30/2020,28,TX
+Vermont,"March 25, 2020 at?ÿ5:00?ÿp.m.",March,25,3/25/2020,5/15/2020,51,VT
+Virginia,30-Mar-20,March,30,3/30/2020,5/29/2020,60,VA
+Washington,23-Mar-20,March,23,3/23/2020,5/31/2020,69,WA
+West Virginia,"March 24, 2020 at?ÿ8:00?ÿp.m.",March,24,3/24/2020,5/4/2020,41,WV 
+Wisconsin,"March 25, 2020 at?ÿ8:00?ÿa.m.",March,25,3/25/2020,5/13/2020,49,WI
