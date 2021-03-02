@@ -38,3 +38,6 @@ vignettes/*.pdf
 
 # AARP Data 
 bigData/data/
+
+# HCSC Case 
+HCSC/
