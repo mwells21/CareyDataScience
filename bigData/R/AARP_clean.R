@@ -86,3 +86,60 @@ interactions = dat[users_index,58:72]
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+# ----- Make whole file user based -----
+
+library(tidyverse)
+library(lubridate)
+
+setwd("GitHub/CareyDataScience/bigData/")
+
+# Full AARP data set
+dat = read_csv("data/AARP Data.csv")
+
+
+# ---- Subset: Virtual and In-Person ----
+users = unique(dat$Identification_Key)
+users_key = dat[,1:3]
+
+vir = users_key[users_key$TYPE2 == "VIRTUAL",]
+per = users_key[users_key$TYPE == "IN_PERSON",]
+
+vir_users = unique(vir$Identification_Key)
+per_users = unique(per$Identification_Key)
+
+both_users = vir_users[vir_users %in% per_users]
+
+vir_users = vir_users[!(vir_users %in% both_users)]
+per_users = per_users[!(per_users %in% both_users)]
+
+
+users_table = data.frame(id = users, event = NA)
+
+
+# Event 
+users_table$event[users_table$id %in% vir_users] = "Virtual"
+users_table$event[users_table$id %in% per_users] = "In_Person"
+users_table$event[users_table$id %in% both_users] = "Both"
+
+
+users_index = match(users_table$id,dat$Identification_Key)
+
+
+for(i in 4:ncol(dat)){
+  tmpCol = dat[users_index,i]
+  users_table = cbind(users_table,tmpCol)
+}
+
+write_csv(users_table, path = "data/AARP_users_table_full.csv")
+
