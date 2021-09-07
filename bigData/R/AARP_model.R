@@ -157,7 +157,7 @@ print(boruta.train)
 
 save(boruta.train,file = "data/boruta_model_All.rda")
 
-
+load("data/boruta_model_bothVInP.rda")
 par(mar=c(10,4,2,1))
 plot(boruta.train, xlab = "", xaxt = "n")
 lz<-lapply(1:ncol(boruta.train$ImpHistory),function(i)
@@ -170,11 +170,28 @@ axis(side = 1,las=2,labels = names(Labels),
 
 
 
-ggplot(data = dat, aes(y = IPL_TECH_EM,x = event, fill = event))+
-  geom_boxplot()+theme_minimal()+scale_fill_brewer(palette = "Blues",direction = -1)
+ggplot(data = dat, aes(y = 100 - WORK_JOBS_EM,x = event, fill = event))+
+  geom_boxplot()+theme_minimal()+scale_fill_brewer(palette = "Blues",direction = -1)+
+  ylab("Probability to attend a job working webinar")
 
+ggplot(data = dat, aes(y = NUM_ENTERTAINMENT_VISITS_PAST_3MONTHS,x = event, fill = event))+
+  geom_bar(stat = "summary", fun.y = "mean")+theme_minimal()+scale_fill_brewer(palette = "Blues",direction = -1)+
+  ylab("Number of Visits")
+ggplot(data = dat, aes(y = NUM_ENTERTAINMENT_VISITS_PAST_3MONTHS,x = event, fill = event))+
+  geom_bar(stat = "summary", fun.y = "mean")+theme_minimal()+scale_fill_brewer(palette = "Blues",direction = -1)+
+  ylab("Number of Visits")
+ggplot(data = dat, aes(y = NUM_VISITS_PAST_3MONTHS,x = event, fill = event))+
+  geom_bar(stat = "summary", fun.y = "mean")+theme_minimal()+scale_fill_brewer(palette = "Blues",direction = -1)+
+  ylab("Number of Visits")
+ggplot(data = dat, aes(y = live_answer_am,x = event, fill = event))+
+  geom_bar(stat = "summary", fun.y = "mean")+theme_minimal()+scale_fill_brewer(palette = "Blues",direction = -1)+
+  ylab("Number of Visits")
 
+ggplot(data = dat, aes(y = NUM_VISITS_PAST_3MONTHS, x = Email_click, col = event))+
+  geom_point()
 
+ggplot(data = dat, aes(y = live_answer_am, x = Email_click, col = event))+
+  geom_point()
 # ---- Predictive Model ----- 
 setwd("~/GitHub/CareyDataScience/bigData/")
 dat = read_csv("data/AARP_users_table_full.csv")
@@ -209,7 +226,7 @@ load("data/boruta_model.rda")
 
 dat = dat[,c("event",Boruta::getSelectedAttributes(boruta.train)[Boruta::getSelectedAttributes(boruta.train) %in% colnames(dat)])]
 
-
+dat = dat[,c("event",names(Labels[41:61])[names(Labels[41:61]) %in% colnames(dat)])]
 
 trainIndex = createDataPartition(dat$event, p = .7, list = F, times = 1)
 
