@@ -61,6 +61,7 @@ Let's build the network -- again, remember that you aren't supposed to understan
 ```{r}
 network <- keras_model_sequential() %>% 
   layer_dense(units = 512, activation = "relu", input_shape = c(28 * 28)) %>% 
+  layer_dropout(rate = 0.5) %>%
   layer_dense(units = 10, activation = "softmax")
 ```
 
@@ -104,7 +105,7 @@ test_labels <- to_categorical(test_labels)
 We are now ready to train our network, which in Keras is done via a call to the `fit` method of the network: we "fit" the model to its training data.
 
 ```{r, echo=TRUE, results='hide'}
-network %>% fit(train_images, train_labels, epochs = 5, batch_size = 128,validation_split = 0.2)
+network %>% fit(train_images, train_labels, epochs = 10, batch_size = 128,validation_split = 0.2)
 ```
 
 Two quantities are being displayed during training: the "loss" of the network over the training data, and the accuracy of the network over the training data.
