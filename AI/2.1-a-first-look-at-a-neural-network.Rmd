@@ -25,7 +25,7 @@ The MNIST dataset comes preloaded in Keras, in the form of `train` and `test` li
 ```{r, results='hide'}
 library(keras)
 
-mnist <- dataset_mnist()
+mnist <- dataset_fashion_mnist()
 train_images <- mnist$train$x
 train_labels <- mnist$train$y
 test_images <- mnist$test$x
@@ -59,10 +59,22 @@ The workflow will be as follows: first we'll feed the neural network the trainin
 Let's build the network -- again, remember that you aren't supposed to understand everything about this example yet.
 
 ```{r}
-network <- keras_model_sequential() %>% 
-  layer_dense(units = 512, activation = "relu", input_shape = c(28 * 28)) %>% 
-  layer_dropout(rate = 0.5) %>%
-  layer_dense(units = 10, activation = "softmax")
+# network <- keras_model_sequential() %>%
+#   layer_dense(units = 784, activation = "relu", input_shape = c(28 * 28)) %>%
+#   layer_dropout(rate = 0.5) %>%
+#   layer_dense(units = 10, activation = "softmax")
+
+network <- keras_model_sequential() %>%
+  layer_conv_2d(filters = 32, kernel_size = c(3,3), activation = 'relu',
+                input_shape = c(28 , 28, 1)) %>% 
+  layer_dropout(rate = .5)%>%
+  layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = 'relu') %>% 
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>% 
+  layer_dropout(rate = 0.25) %>% 
+  layer_flatten() %>% 
+  layer_dense(units = 128, activation = 'relu') %>% 
+  layer_dropout(rate = 0.5) %>% 
+  layer_dense(units = 10, activation = 'softmax')
 ```
 
 The core building block of neural networks is the _layer_, a data-processing module that you can think of as a filter for data. Some data comes in, and it comes out in a more useful form. Specifically, layers extract _representations_ out of the data fed into them—hopefully representations that are more meaningful for the problem at hand. Most of deep learning consists of chaining together simple layers that will implement a form of progressive _data distillation_. A deep-learning model is like a sieve for data processing, made of a succession of increasingly refined data filters—the layers.
@@ -78,20 +90,25 @@ To make the network ready for training, we need to pick three more things, as pa
 The exact purpose of the loss function and the optimizer will be made clear throughout the next two chapters.
 
 ```{r}
+# network %>% compile(
+#   optimizer = "rmsprop",
+#   loss = "categorical_crossentropy",
+#   metrics = c("accuracy")
+# )
 network %>% compile(
-  optimizer = "rmsprop",
-  loss = "categorical_crossentropy",
-  metrics = c("accuracy")
+  loss = loss_categorical_crossentropy,
+  optimizer = optimizer_adadelta(),
+  metrics = c('accuracy')
 )
 ```
 
 Before training, we'll preprocess the data by reshaping it into the shape the network expects and scaling it so that all values are in the `[0, 1]` interval. Previously, our training images, for instance, were stored in an array of shape `(60000, 28, 28)` of type integer with values in the `[0, 255]` interval. We transform it into a double array of shape `(60000, 28 * 28)` with values between 0 and 1.
 
 ```{r}
-train_images <- array_reshape(train_images, c(60000, 28 * 28))
+train_images <- array_reshape(train_images, c(60000, 28 , 28,1))
 train_images <- train_images / 255
 
-test_images <- array_reshape(test_images, c(10000, 28 * 28))
+test_images <- array_reshape(test_images, c(10000, 28 , 28,1))
 test_images <- test_images / 255
 ```
 
@@ -105,7 +122,7 @@ test_labels <- to_categorical(test_labels)
 We are now ready to train our network, which in Keras is done via a call to the `fit` method of the network: we "fit" the model to its training data.
 
 ```{r, echo=TRUE, results='hide'}
-network %>% fit(train_images, train_labels, epochs = 10, batch_size = 128,validation_split = 0.2)
+network %>% fit(train_images, train_labels, epochs = 20, batch_size = 128, validation_split = .2)
 ```
 
 Two quantities are being displayed during training: the "loss" of the network over the training data, and the accuracy of the network over the training data.
