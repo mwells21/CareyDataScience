@@ -1,0 +1,19 @@
+{
+    "name": "AZOTHOTH THE FOOL",
+    "description": "Horror Hero",
+    "image": "https://ipfs.io/ipfs/QmYx6GsYAKnNzZ9A6NvEKV9nf1VaDzJrqDR23Y8YSkebLU?filename=azothoth-the-fool.png",
+    "attributes": [
+        {
+            "deck_type": "horror",
+            "card_type":"hero",
+            "value": 10,
+            "heart": 3,
+            "attributes": ["Horror", "All seeing eye"],
+            "ability": "You may exchange this hero from your hand at the end of the second reveal. If played in this way modify power by -3 and treat this hero as though it has every Horror attribute"
+
+
+        }
+    ]
+}
+
+
